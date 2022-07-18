@@ -1,38 +1,20 @@
 package qa.guru.owner.config;
 
-import java.net.MalformedURLException;
+import org.aeonbits.owner.Config;
+
 import java.net.URL;
-import java.util.Objects;
 
-public class WebDriverConfig {
+public interface WebDriverConfig extends Config {
 
-    public String getBaseUrl() {
-        String baseUrl = System.getProperty("baseUrl");
-        if (Objects.isNull(baseUrl)) {
-            baseUrl = "https://github/com";
-        }
+    @Key("baseUrl")
+    @DefaultValue("https://github.com")
+    String getBaseUrl();
 
-        return baseUrl;
-    }
+    @Key("browser")
+    @DefaultValue("CHROME")
+    Browser getBrowser();
 
-    public Browser getBrowser() {
-        String browser = System.getProperty("browser");
-        if (Objects.isNull(browser)) {
-            browser = "CHROME";
-        }
-
-        return Browser.valueOf(browser);
-    }
-
-    public URL getRemoteURL() {
-        String remoteUrl = System.getProperty("remoteUrl");
-        if (Objects.isNull(remoteUrl)) {
-            remoteUrl = "https://localhost:4444";
-        }
-        try {
-            return new URL(remoteUrl);
-        } catch (MalformedURLException e) {
-            throw new RuntimeException(e);
-        }
-    }
+    @Key("remoteUrl")
+    @DefaultValue("https://localhost:4444")
+    URL getRemoteURL();
 }
