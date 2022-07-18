@@ -16,12 +16,12 @@ dependencies {
             "io.github.bonigarcia:webdrivermanager:5.2.1",
             'org.aeonbits.owner:owner:1.0.12'
     )
+    testRuntimeOnly('org.junit.jupiter:junit-jupiter-engine:5.8.1')
 }
 
-tasks.withType(JavaCompile) {
-    options.encoding = 'UTF-8'
-}
+compileJava.options.encoding = 'UTF-8'
 
 test {
     useJUnitPlatform()
+    systemProperties(System.getProperties())
 }
