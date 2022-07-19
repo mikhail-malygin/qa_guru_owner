@@ -1,4 +1,4 @@
-package web.tests.config;
+package jetBrains.config;
 
 import org.aeonbits.owner.Config;
 import qa.guru.owner.config.Browser;

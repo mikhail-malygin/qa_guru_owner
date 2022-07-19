@@ -1,8 +1,7 @@
-package web.tests.config;
+package jetBrains.config;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.aeonbits.owner.ConfigFactory;
-import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -14,9 +13,14 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 import java.util.Objects;
 import java.util.function.Supplier;
 
+import static java.lang.String.format;
+
 public class WebDriverProvider implements Supplier<WebDriver> {
 
     private final WebDriverConfig config;
+    static CredentialsConfig credentialsConfig  = ConfigFactory.create(CredentialsConfig.class);
+    String login = credentialsConfig.login();
+    String password = credentialsConfig.password();
 
     public WebDriverProvider() {
         this.config = ConfigFactory.create(WebDriverConfig.class, System.getProperties());
@@ -33,7 +37,7 @@ public class WebDriverProvider implements Supplier<WebDriver> {
     public WebDriver createDriver() {
         DesiredCapabilities capabilities = new DesiredCapabilities();
 
-        if (Objects.isNull(config.getRemoteURL())) {
+        if (Objects.isNull(format("https://%s:%s@%s", login, password, config.getRemoteURL()))) {
             switch (config.getBrowser()) {
                 case CHROME: {
                     WebDriverManager.chromedriver().setup();
