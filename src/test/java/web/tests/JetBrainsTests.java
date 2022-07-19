@@ -2,6 +2,7 @@ package web.tests;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.WebDriver;
 import web.tests.config.WebDriverProvider;
@@ -18,6 +19,7 @@ public class JetBrainsTests {
     }
 
     @Test
+    @Tag("jetBrains")
     public void openJetBrainsMainPage() {
         String title = driver.getTitle();
 
