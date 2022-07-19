@@ -22,10 +22,13 @@ public interface WebDriverConfig extends Config {
     URL getRemoteURL();
 
     @Key("browserVersion")
-    @DefaultValue("100")
     String getBrowserVersion();
 
-    @Key("browserResolution")
-    @DefaultValue("1920x1080")
-    String getBrowserResolution();
+    @Key("browserWidth")
+    @DefaultValue("1920")
+    Integer getBrowserWidth();
+
+    @Key("browserHeight")
+    @DefaultValue("1080")
+    Integer getBrowserHeight();
 }
