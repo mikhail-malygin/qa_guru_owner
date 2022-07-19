@@ -27,15 +27,10 @@ public class WebDriverProvider implements Supplier<WebDriver> {
         WebDriver driver = createDriver();
         driver.get(config.getBaseUrl());
 
-        Dimension dimension = new Dimension(config.getBrowserWidth(), config.getBrowserHeight());
-        driver.manage().window().setSize(dimension);
-
-
         return driver;
     }
 
     public WebDriver createDriver() {
-        System.setProperty("host", "remote");
         DesiredCapabilities capabilities = new DesiredCapabilities();
 
         if (Objects.isNull(config.getRemoteURL())) {

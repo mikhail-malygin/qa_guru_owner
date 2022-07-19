@@ -23,12 +23,4 @@ public interface WebDriverConfig extends Config {
 
     @Key("browserVersion")
     String getBrowserVersion();
-
-    @Key("browserWidth")
-    @DefaultValue("1920")
-    Integer getBrowserWidth();
-
-    @Key("browserHeight")
-    @DefaultValue("1080")
-    Integer getBrowserHeight();
 }
