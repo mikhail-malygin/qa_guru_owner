@@ -1,7 +1,8 @@
-package qa.guru.owner.config;
+package qa.guru.owner;
 
 import org.aeonbits.owner.ConfigFactory;
 import org.junit.jupiter.api.Test;
+import qa.guru.owner.config.AuthConfig;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
