@@ -7,7 +7,6 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
-import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
 import java.util.Objects;
@@ -35,18 +34,15 @@ public class WebDriverProvider implements Supplier<WebDriver> {
     }
 
     public WebDriver createDriver() {
-        DesiredCapabilities capabilities = new DesiredCapabilities();
 
         if (Objects.isNull(format("https://%s:%s@%s", login, password, config.getRemoteURL()))) {
             switch (config.getBrowser()) {
                 case CHROME: {
                     WebDriverManager.chromedriver().setup();
-                    capabilities.setVersion(config.getBrowserVersion());
                     return new ChromeDriver();
                 }
                 case FIREFOX: {
                     WebDriverManager.firefoxdriver().setup();
-                    capabilities.setVersion(config.getBrowserVersion());
                     return new FirefoxDriver();
                 }
                 default: {
@@ -58,12 +54,10 @@ public class WebDriverProvider implements Supplier<WebDriver> {
             switch (config.getBrowser()) {
                 case CHROME: {
                     RemoteWebDriver remoteChromeWebDriver = new RemoteWebDriver(config.getRemoteURL(), new ChromeOptions());
-                    capabilities.setVersion(config.getBrowserVersion());
                     return remoteChromeWebDriver;
                 }
                 case FIREFOX: {
                     RemoteWebDriver remoteFirefoxWebDriver = new RemoteWebDriver(config.getRemoteURL(), new FirefoxOptions());
-                    capabilities.setVersion(config.getBrowserVersion());
                     return remoteFirefoxWebDriver;
                 }
                 default: {
