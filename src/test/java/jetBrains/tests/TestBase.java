@@ -7,7 +7,7 @@ import org.openqa.selenium.WebDriver;
 
 public class TestBase {
 
-    private WebDriver driver;
+    protected WebDriver driver;
 
     @BeforeEach
     public void startDriver(){
