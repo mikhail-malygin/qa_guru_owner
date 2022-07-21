@@ -8,9 +8,9 @@ import org.aeonbits.owner.Config;
 })
 public interface AuthConfig extends Config {
 
-    @Key("username")
+    @Key("username_auth")
     String username();
 
-    @Key("password")
+    @Key("password_auth")
     String password();
 }
