@@ -18,8 +18,6 @@ public class WebDriverProvider implements Supplier<WebDriver> {
 
     private final WebDriverConfig config;
     static CredentialsConfig credentialsConfig  = ConfigFactory.create(CredentialsConfig.class);
-    String login = credentialsConfig.login();
-    String password = credentialsConfig.password();
 
     public WebDriverProvider() {
         this.config = ConfigFactory.create(WebDriverConfig.class, System.getProperties());
@@ -34,6 +32,8 @@ public class WebDriverProvider implements Supplier<WebDriver> {
     }
 
     public WebDriver createDriver() {
+        String login = credentialsConfig.login();
+        String password = credentialsConfig.password();
 
         if (Objects.isNull(format("https://%s:%s@%s", login, password, config.getRemoteURL()))) {
             switch (config.getBrowser()) {
