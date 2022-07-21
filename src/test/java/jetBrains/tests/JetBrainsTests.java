@@ -12,6 +12,6 @@ public class JetBrainsTests extends TestBase{
     public void openJetBrainsMainPage() {
         String title = driver.getTitle();
 
-        assertEquals("JetBrains: Essential tools for software developers and teams", title );
+        assertEquals("JetBrains: ssential tools for software developers and teams", title );
     }
 }
