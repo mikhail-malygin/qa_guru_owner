@@ -37,7 +37,7 @@ public class WebDriverProvider implements Supplier<WebDriver> {
         String password = credentialsConfig.password();
         DesiredCapabilities capabilities = new DesiredCapabilities();
 
-        if (Objects.isNull(config.getRemoteURL())) {
+        if (Objects.isNull(format("https://%s:%s@%s", login, password, config.getRemoteURL()))) {
             switch (config.getBrowser()) {
                 case CHROME: {
                     WebDriverManager.chromedriver().setup();
